@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from "../src/components/auth/Login";
-import Home from "../src/components/home";
+import Home from "../src/components/home/Home";
 import ForgotPassword from "./components/ForogtPassword/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header";
@@ -20,6 +20,7 @@ import ConfirmNewSchedule from "./components/admin/ConfirmNewSchedule";
 import CheckAppointment from "./components/doctor/CheckAppointment";
 import CheckIncomeDetails from "./components/doctor/CheckIncomeDetails";
 import DisplayData from "./components/DisplayData";
+import AppointmentHistory from "./components/AppointmentHistory";
 
 const drawerWidth = 300;
 
@@ -82,6 +83,7 @@ const App=()=> {
                         <Route path="/checkAppoinment"  element={<CheckAppointment/>}/>
                         <Route path="/checkIncomeDetails"  element={<CheckIncomeDetails/>}/>
                         <Route path="/displaydata"  element={<DisplayData/>}/>
+                        <Route path="/appointmentHistory"  element={<AppointmentHistory/>}/>
                     </Routes>                  
                 </Box>
             </BrowserRouter>

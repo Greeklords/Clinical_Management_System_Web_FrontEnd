@@ -5,13 +5,13 @@ import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
 import { array } from 'yup';
 
-export default function DisplayData(){    
+export default function AppointmentHistory(){    
 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/doctor/displaydoctors`)
+      .get(`http://localhost:4000/profile/displaydoctors`)
       .then((res) => {          
         console.log(res.data);
         setComments(res.data);

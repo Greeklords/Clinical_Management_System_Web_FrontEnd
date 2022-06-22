@@ -1,17 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
 import axios from 'axios';
-import { error } from 'jquery';
+import Divider from '@mui/material/Divider';
 
 export default function CheckAppointment() { 
   const [notes,getNotes] = React.useState('');
@@ -33,32 +27,85 @@ export default function CheckAppointment() {
   return (
     <Grid container component="main" sx={{ height: '100vh'}}>
     <CssBaseline/>
-    <Grid container rowSpacing={3}/>    
-    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      
-    <Grid item xs={6} marginLeft={25}> 
-    <Typography sx={{ fontSize: 20}} marginLeft={15} color="text.primary" gutterBottom>
-          Check daily appointments
-    </Typography>  
-    <Card sx={{ minWidth: 100 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14}} marginLeft={15} color="text.secondary" gutterBottom>        
-          Number of daily appointments
-        </Typography>                     
-      </CardContent>
-      <CardActions>
-        <Stack direction="row" spacing={2} marginLeft={12}>          
-          <Button variant="contained" endIcon={<SendIcon />}>
-            Confirm
-          </Button>
-          <Button variant="outlined" startIcon={<DeleteIcon />}>
-            Cancel
-          </Button>
-        </Stack>
-      </CardActions>
-    </Card>
+    <Grid container rowSpacing={1}/>    
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+
+    <Grid item xs={6}> 
+    <Typography sx ={{fontSize: 30, textAlign:'right'}}>Check Appointments</Typography>  
     </Grid>
 
+    <Grid container rowSpacing={1}/>
+
+    <Grid item xs={5}> 
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', marginLeft:5}}>
+      <Box sx={{ my: 3, mx: 2 }}>
+        <Grid container alignItems="center">
+          <Grid item xs>
+            <Typography gutterBottom variant="h5" component="div">
+              Patient name
+            </Typography>
+          </Grid>          
+        </Grid>
+        <Typography color="text.secondary" variant="body2">          
+          Date : 17/6/2022          
+        </Typography>
+        <Typography color="text.secondary" variant="body2">       
+          Time : 6.43 PM
+        </Typography>
+      </Box>
+      <Divider variant="middle" />        
+        <Button
+          type="submit"          
+          variant="contained"
+          sx={{ mt: 3, mb: 2, marginLeft:2}}          
+        >
+          Reschedule
+        </Button>  
+        <Button          
+          type="submit"          
+          variant="contained"
+          sx={{ mt: 3, mb: 2, marginLeft:3 }}                   
+        >
+          Cancel
+        </Button>      
+      </Box>    
+    </Grid>
+
+
+    <Grid item xs={5}> 
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', marginLeft:5}}>
+      <Box sx={{ my: 3, mx: 2 }}>
+        <Grid container alignItems="center">
+          <Grid item xs>
+            <Typography gutterBottom variant="h5" component="div">
+              Patient name
+            </Typography>
+          </Grid>          
+        </Grid>
+        <Typography color="text.secondary" variant="body2">          
+          Date : 17/6/2022          
+        </Typography>
+        <Typography color="text.secondary" variant="body2">       
+          Time : 6.43 PM
+        </Typography>
+      </Box>
+      <Divider variant="middle" />        
+        <Button
+          type="submit"          
+          variant="contained"
+          sx={{ mt: 3, mb: 2, marginLeft:2}}          
+        >
+          Reschedule
+        </Button>  
+        <Button          
+          type="submit"          
+          variant="contained"
+          sx={{ mt: 3, mb: 2, marginLeft:3 }}                   
+        >
+          Cancel
+        </Button>      
+      </Box>    
+    </Grid>
     </Grid>
     </Grid>
   );

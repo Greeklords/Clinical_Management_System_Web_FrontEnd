@@ -124,21 +124,21 @@ export default function Register() {
           sx={{ mt: 1 }}
         >
 
-        <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Role</InputLabel>
-      <Select
-        required           
-        value={role}
-        label="role"
-        autoComplete="role"
-        autoFocus
-        onChange={(e) => setRole(e.target.value)}
-      >
-        <MenuItem value={10}>patient</MenuItem> 
-      </Select>
-    </FormControl>
-  </Box>
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Role</InputLabel>
+        <Select
+          required           
+          value={role}
+          label="role"
+          autoComplete="role"
+          autoFocus
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <MenuItem value={10}>patient</MenuItem> 
+        </Select>
+        </FormControl>
+      </Box>
 
           <TextField
             margin="normal"
