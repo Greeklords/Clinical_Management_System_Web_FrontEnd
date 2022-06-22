@@ -63,6 +63,46 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        error: true,
+        errorMessage: action.data.message
+      };
+    case actionTypes.FORGOT_PASSWORD:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionTypes.FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorMessage: ''
+      };
+    case actionTypes.FORGOT_PASSWORD_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: action.data.message
+      };
+    case actionTypes.RESET_PASSWORD:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionTypes.RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        errorMessage: ''
+      };
+    case actionTypes.RESET_PASSWORD_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessage: action.data.message
       };
     case actionTypes.TOGGLE_THEME:
       return {
@@ -76,7 +116,7 @@ function reducer(state = initialState, action) {
       };
     case actionTypes.DOCTOR_PROFILE_SUCCESS:
       return {
-        ...state,        
+        ...state,
         isAuthenticated: true,
         loading: false,
       };

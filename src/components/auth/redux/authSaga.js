@@ -46,6 +46,44 @@ export function* registerUser(action) {
   }
 }
 
+export function* forgotPassword(action) {
+  const Axios = yield createRequest();
+  try {
+    const { data } = yield Axios.post('user/forgot-password', action.data);
+    yield put({
+      type: actionTypes.FORGOT_PASSWORD_SUCCESS,
+      data,
+    });
+    action.data.navigate("/login");
+
+  } catch (error) {
+    yield put({
+      type: actionTypes.FORGOT_PASSWORD_ERROR,
+      data: error.response.data
+    });
+    toast.error(error.response ? error.response.data.message : 'Unknown Error');
+  }
+}
+
+export function* resetPassword(action) {
+  const Axios = yield createRequest();
+  try {
+    const { data } = yield Axios.post('user/reset-password', action.data);
+    yield put({
+      type: actionTypes.RESET_PASSWORD_SUCCESS,
+      data,
+    });
+    action.data.navigate("/login");
+
+  } catch (error) {
+    yield put({
+      type: actionTypes.RESET_PASSWORD_ERROR,
+      data: error.response.data
+    });
+    toast.error(error.response ? error.response.data.message : 'Unknown Error');
+  }
+}
+
 export function* addDoctorProfile(action) {
   const Axios = yield createRequest();
   try {

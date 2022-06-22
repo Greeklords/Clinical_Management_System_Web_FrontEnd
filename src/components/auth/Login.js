@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -17,7 +16,6 @@ import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './redux/authActions';
 
-
 function Copyright(props) {
   return (
     <Typography
@@ -30,14 +28,14 @@ function Copyright(props) {
       {' '}
       {new Date().getFullYear()}
       {'.'}
-    </Typography>                  
+    </Typography>
   );
 }
 
 
 export default function Login() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();    
+    const navigate = useNavigate();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -53,6 +51,7 @@ export default function Login() {
         event.preventDefault();
         loginThisUser();
     };
+
     useEffect(
         ()=>{
             if(isAuthenticated){
@@ -60,9 +59,9 @@ export default function Login() {
             }
         },[]
     )
+
   return (
       <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
         <Grid
           item
           xs={false}
@@ -79,7 +78,7 @@ export default function Login() {
             backgroundPosition: 'center',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square display='flex' flexDirection='column' justifyContent='center'>
           <Box
             sx={{
               my: 8,
@@ -100,7 +99,7 @@ export default function Login() {
               noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
-            >            
+            >
               <TextField
                 margin="normal"
                 required
