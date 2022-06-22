@@ -15,6 +15,8 @@ import {useEffect} from "react";
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './redux/authActions';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Copyright(props) {
   return (
@@ -32,14 +34,22 @@ function Copyright(props) {
   );
 }
 
+const validationSchema = Yup.object({
+    email: Yup
+        .string('Enter your email')
+        .email('Enter a valid email')
+        .required('Email is required'),
+    password: Yup
+        .string('Enter your password')
+        .min(5, 'Password should be of minimum 5 characters length')
+        .required('Password is required'),
+});
 
 export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
 
-    const loginThisUser = () => {
+    const loginThisUser = (email, password) => {
         dispatch(loginUser({ email, password, navigate }));
     };
     const loading = useSelector((state) => state.authReducer.loading);
@@ -47,10 +57,16 @@ export default function Login() {
     const errorMessage = useSelector((state) => state.authReducer.errorMessage);
     const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        loginThisUser();
-    };
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            loginThisUser(values.email, values.password)
+        },
+    });
 
     useEffect(
         ()=>{
@@ -94,61 +110,59 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
-            >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Sign In
-              </Button>
-                { error &&  <Alert severity="error">{errorMessage}</Alert>}
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/forgot-password" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+                <form onSubmit={formik.handleSubmit}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    type="email"
+                    label="Email Address"
+                    autoFocus
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    label="Password"
+                    type="password"
+                    id="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helperText={formik.touched.password && formik.errors.password}
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" color="primary" />}
+                    label="Remember me"
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                  >
+                    Sign In
+                  </Button>
+                    { error &&  <Alert severity="error">{errorMessage}</Alert>}
+                  <Grid container>
+                    <Grid item xs>
+                      <Link href="/forgot-password" variant="body2">
+                        Forgot password?
+                      </Link>
+                    </Grid>
+                    <Grid item>
+                      <Link href="/signup" variant="body2">
+                        {"Don't have an account? Sign Up"}
+                      </Link>
+                    </Grid>
+                  </Grid>
+                  <Copyright sx={{ mt: 5 }} />
+                </form>
           </Box>
         </Grid>
       </Grid>

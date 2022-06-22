@@ -134,6 +134,7 @@ const persistConfig = {
   keyPrefix: 'chamal-medicare-auth-',
   key: 'cart-list',
   storage,
+  blacklist: ['error']
 };
 
 export default persistReducer(persistConfig, reducer);
