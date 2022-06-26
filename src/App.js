@@ -57,6 +57,7 @@ import RecepView from './components/medical_certificate/RecepView';
 import AppointmentHistory from "./components/AppointmentHistory";
 import PatientAppointmentHistory from "./components/user/PatientAppointmentHistory";
 import Income from "./components/charts/Income";
+import OfferForm from "./components/offers/offerform";
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -161,6 +162,7 @@ const App=()=> {
                         <Route path="/reset-password/:userId/:token"  element={<ResetPassword/>}/>
 
                         <Route path="/income"  element={<Income/>}/>
+                        <Route path="/issueOffers" element={<OfferForm/>}/>
                         
                         
                     </Routes>
