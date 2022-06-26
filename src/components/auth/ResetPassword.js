@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { resetPassword } from "./redux/authActions";
 import {useEffect, useState} from "react";
 import createRequest from '../../utils/axios';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Copyright(props) {
   return (
@@ -30,6 +32,21 @@ function Copyright(props) {
   );
 }
 
+const validationSchema = Yup.object({
+  password: Yup
+      .string('Enter your password')
+      .min(5, 'Password should be of minimum 5 characters length')
+      .required('Password is required'),
+  confirmPassword: Yup
+      .string()
+      .when("password", {
+        is: val => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Both password need to be the same"
+      )
+  })  
+});
 
 export default function ResetPassword() {
     const dispatch = useDispatch();
@@ -37,16 +54,25 @@ export default function ResetPassword() {
     const params = useParams();
     const token = params.token;
     const userId = params.userId;
-    const [password,setPassword] = useState("");
-    const [confirmPassword,setConfirmPassword] = useState("");
     const [isResetLinkValid,setIsResetLinkValid] = useState(false);
 
 
-    const resetPasswordHandler= () => {
+    const resetPasswordHandler= (password) => {
         dispatch(resetPassword({ password, userId, token, navigate }));
     };
     const error = useSelector((state) => state.authReducer.error);
     const errorMessage = useSelector((state) => state.authReducer.errorMessage);
+
+    const formik = useFormik({
+      initialValues: {
+          password: '',
+          confirmPassword: '',
+      },
+      validationSchema: validationSchema,
+      onSubmit: (values) => {
+        resetPasswordHandler(values.password, values.confirmPassword)
+      },
+    });
 
     async function fetchData() {
         try{
@@ -96,7 +122,7 @@ export default function ResetPassword() {
             <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={formik.handleSubmit}
                 sx={{ mt: 1 }}
             >
                 <Grid container xs={12}>
@@ -110,7 +136,10 @@ export default function ResetPassword() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            onChange={(e) => setPassword(e.target.value)}
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
+                            error={formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.touched.password && formik.errors.password}
                         />
                     </Grid>
                     <Grid xs={12} padding='0 10px'>
@@ -123,7 +152,10 @@ export default function ResetPassword() {
                             type="password"
                             id="confirmPassword"
                             autoComplete="current-password"
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            value={formik.values.confirmPassword}
+                            onChange={formik.handleChange}
+                            error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                            helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                         />
                     </Grid>
                 </Grid>

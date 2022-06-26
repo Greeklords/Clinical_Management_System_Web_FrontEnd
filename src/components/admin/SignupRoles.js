@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../auth/redux/authActions';
+import { registerRoles, registerUser } from '../auth/redux/authActions';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 import InputLabel from '@mui/material/InputLabel';
@@ -32,7 +32,7 @@ export default function SignupRoles() {
     const [confirmPassword,setconfirmPassword] = useState(""); 
 
     const registerThisUser = () => {
-        dispatch(registerUser({ 
+        dispatch(registerRoles({ 
             role,
             firstName, 
             lastName,
@@ -79,7 +79,7 @@ export default function SignupRoles() {
           <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Create Account
         </Typography>
         <Box
           component="form"
@@ -103,9 +103,10 @@ export default function SignupRoles() {
                 autoFocus
                 onChange={(e) => setRole(e.target.value)}
               >            
-                <MenuItem value={10}>doctor</MenuItem>  
-                <MenuItem value={20}>receptionist</MenuItem>
-                <MenuItem value={30}>lab assistant</MenuItem>
+                <MenuItem value={'patient'}>Patient</MenuItem>
+                <MenuItem value={'lab-assistant'}>Lab Assistant</MenuItem>
+                <MenuItem value={'receptionist'}>Receptionist</MenuItem>
+                <MenuItem value={'doctor'}>Doctor</MenuItem>
               </Select>
             </FormControl>
           </Box>                           

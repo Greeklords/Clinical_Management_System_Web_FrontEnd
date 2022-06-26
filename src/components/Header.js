@@ -19,11 +19,12 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AccountMenu from './AccountMenu';
 import {useDispatch, useSelector} from "react-redux";
-import menu_config, { patient_menu_config } from "./config/navbar/menu.config";
-import doctor_menu_config from "./config/navbar/menu.config";
-import administrator_menu_config from "./config/navbar/menu.config";
-import labAssistant_menu_config from "./config/navbar/menu.config";
-import receptionist_menu_config from "./config/navbar/menu.config";
+import menu_config,
+      {patient_menu_config,
+       doctor_menu_config,
+       administrator_menu_config,
+       labAssistant_menu_config,
+       receptionist_menu_config } from "./config/navbar/menu.config";
 import {logOutUser} from "./auth/redux/authActions";
 import {toggleTheme} from "./auth/redux/authActions";
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -151,7 +152,7 @@ const Header = (props) => {
                                     ? doctor_menu_config
                                     : user.role === 'receptionist'
                                         ? receptionist_menu_config
-                                        : user.role === 'labAssistant'
+                                        : user.role === 'lab-assistant'
                                             ? labAssistant_menu_config
                                             : user.role === 'administrator'
                                                 ? administrator_menu_config

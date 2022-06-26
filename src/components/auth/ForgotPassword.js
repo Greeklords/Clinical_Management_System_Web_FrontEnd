@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword } from "./redux/authActions";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 function Copyright(props) {
   return (
@@ -28,23 +30,32 @@ function Copyright(props) {
   );
 }
 
+const validationSchema = Yup.object({
+  email: Yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),  
+});
 
 export default function ForgotPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [email, setEmail] = React.useState('');
-
-  const forgotPasswordHandler= () => {
+  
+  const forgotPasswordHandler= (email) => {
     dispatch(forgotPassword({ email, navigate }));
   };
   const error = useSelector((state) => state.authReducer.error);
   const errorMessage = useSelector((state) => state.authReducer.errorMessage);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    forgotPasswordHandler();
-  };
-
+  const formik = useFormik({
+    initialValues: {
+        email: '',       
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      forgotPasswordHandler(values.email)
+    },
+});
   return (
       <Grid container component="main" sx={{ height: '100vh' }}>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square display='flex' flexDirection='column' justifyContent='center'>
@@ -71,7 +82,7 @@ export default function ForgotPassword() {
             <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={formik.handleSubmit}
                 sx={{ mt: 1 }}
             >
               <TextField
@@ -83,7 +94,10 @@ export default function ForgotPassword() {
                   name="email"
                   autoComplete="email"
                   autoFocus
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
               />
               <Button
                   type="submit"

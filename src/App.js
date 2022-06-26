@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from "../src/components/auth/Login";
-import Home from "../src/components/home";
+import Home from "./components/home/Home";
 import ForgotPassword from "./components/auth/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
 import Header from "./components/Header";
@@ -19,8 +19,9 @@ import AddNewSchedule from "./components/doctor/AddNewSchedule";
 import ConfirmNewSchedule from "./components/admin/ConfirmNewSchedule";
 import CheckAppointment from "./components/doctor/CheckAppointment";
 import CheckIncomeDetails from "./components/doctor/CheckIncomeDetails";
-import DisplayData from "./components/DisplayData";
-import HomePage from "./components/home/Home";
+import AppointmentHistory from "./components/AppointmentHistory";
+import PatientAppointmentHistory from "./components/user/PatientAppointmentHistory";
+import TransferList from "./components/receptionist/TransferList";
 
 
 const drawerWidth = 300;
@@ -62,8 +63,36 @@ const App=()=> {
                         <DrawerHeader />
                         <Routes>
                             <React.Fragment>
-                                <Route path="/" element={<PrivateRoute/>} >
-                                    <Route exact path='/' element={<Home/>}/>
+                                <Route path="/" element={<PrivateRoute/>} >                                    
+                                    <Route path="/"  element={<Home/>}/>
+                                </Route>
+
+                                <Route path="/chart" element={<PrivateRoute/>} >                                    
+                                    <Route path="/chart"  element={<Chart/>}/>
+                                </Route>
+
+                                <Route path="/confirmNewSchedule" element={<PrivateRoute/>} >                                    
+                                    <Route path="/confirmNewSchedule"  element={<ConfirmNewSchedule/>}/>
+                                </Route>
+
+                                <Route path="/addNewSchedule" element={<PrivateRoute/>} >                                    
+                                    <Route path="/addNewSchedule"  element={<AddNewSchedule/>}/>
+                                </Route>
+
+                                <Route path="/checkIncomeDetails" element={<PrivateRoute/>} >                                    
+                                    <Route path="/checkIncomeDetails"  element={<CheckIncomeDetails/>}/>
+                                </Route>
+
+                                <Route path="/appointmenthistory" element={<PrivateRoute/>} >                                    
+                                    <Route path="/appointmenthistory"  element={<AppointmentHistory/>}/>
+                                </Route>
+
+                                <Route path="/onlineprofile/:id" element={<PrivateRoute/>} >                                    
+                                    <Route path="/onlineprofile/:id"  element={<PatientAppointmentHistory/>}/>
+                                </Route>
+
+                                <Route path="/getUser/:id" element={<PrivateRoute/>} >                                    
+                                    <Route path="/getUser/:id"  element={<DoctorProfile/>}/>
                                 </Route>
                             </React.Fragment>
                         </Routes>
@@ -73,17 +102,13 @@ const App=()=> {
                         <Route path="/signup"  element={<Register/>}/>
                         <Route path="/forgot-password"  element={<ForgotPassword/>}/>
                         <Route path="/reset-password/:userId/:token"  element={<ResetPassword/>}/>
-                        <Route path="/markDoctorAttendance"  element={<Attendance/>}/>
+
+                        
                         <Route path="/dashboard"  element={<Dashboard/>}/>
-                        <Route path="/signupRoles"  element={<SignupRoles/>}/>
-                        <Route path="/chart"  element={<Chart/>}/>
-                        <Route path="/doctorProfile"  element={<DoctorProfile/>}/>
-                        <Route path="/addNewSchedule"  element={<AddNewSchedule/>}/>
-                        <Route path="/confirmNewSchedule"  element={<ConfirmNewSchedule/>}/>
-                        <Route path="/checkAppoinment"  element={<CheckAppointment/>}/>
-                        <Route path="/checkIncomeDetails"  element={<CheckIncomeDetails/>}/>
-                        <Route path="/displaydata"  element={<DisplayData/>}/>
-                        <Route path="/home"  element={<HomePage/>}/>
+                        <Route path="/markDoctorAttendance"  element={<Attendance/>}/>                                               
+                        <Route path="/signupRoles"  element={<SignupRoles/>}/>                      
+                        <Route path="/get/:id"  element={<CheckAppointment/>}/>                      
+                        <Route path="/transfer"  element={<TransferList/>}/> 
                     </Routes>
                 </Box>
             </BrowserRouter>
@@ -92,50 +117,3 @@ const App=()=> {
 }
 export default App;
 
-// {/*<React.Fragment>*/}
-// {/*  <PrivateRoute exact path="/dashboard" component={UserDashboard} />*/}
-// {/*  <PrivateRoute exact path="/addNewSchedule"  element={<AddNewSchedule/>}/>*/}
-// {/*  <PrivateRoute exact path="/doctorProfile"  element={<DoctorProfile/>}/>*/}
-// {/*  <PrivateRoute exact path="/checkAppoinment"  element={<CheckAppointment/>}/>*/}
-// {/*  <PrivateRoute exact path="/updateAppointment"  element={<UpdateAppointment/>}/>*/}
-// {/*  <PrivateRoute exact path="/emailSend"  element={<ContactUs/>}/>*/}
-// {/*  <PrivateRoute exact path="/chart"  element={<Dashboard/>}/>*/}
-// {/*  <PrivateRoute exact path="/dashboard/appointmenthistory"  element={<AppointmentHistory/>}/>*/}
-// {/*  <PrivateRoute exact path="/upcomingEvents"  element={<UpcomingEvents/>}/>*/}
-// {/*  <PrivateRoute exact path="/confirmNewSchedule"  element={<ConfirmNewSchedule/>}/>*/}
-// {/*  <PrivateRoute exact path="/markDoctorAttendance"  element={<MarkDoctorAttendance/>}/>*/}
-// {/*  /!*<Footer />*!/*/}
-// {/*</React.Fragment>*/}
-// <Router>
-//   <Routes>
-//     <Route exact path="/" element={<Home />} />
-//
-//     <Route exact path="/signupDoctor"  element={<RegisterDoctor/>}/>
-//     <Route exact path="/signupAdmin"  element={<RegisterAdmin/>}/>
-//     <Route exact path="/signupLab"  element={<RegisterLabAssistant/>}/>
-//     <Route exact path="/signupRec"  element={<RegisterReciptionist/>}/>
-//
-//     <Route exact path="/DoctorLogin"  element={<DoctorLogin/>}/>
-//     <Route exact path="/AdminLogin"  element={<AdminLogin/>}/>
-//     <Route exact path="/ReceptionistLogin"  element={<ReceptionistLogin/>}/>
-//     <Route exact path="/LabAssistantLogin"  element={<LabAssistantLogin/>}/>
-//
-//     <Route exact path="/dashboard"  element={<UserDashboard/>}/>
-//     <Route exact path="/doctorDashboard"  element={<DoctorDashboard/>}/>
-//     <Route exact path="/recepDashboard"  element={<ReceptionistDashboard/>}/>
-//     <Route exact path="/adminDashboard"  element={<AdminDashboard/>}/>
-//
-//     <Route exact path="/addNewSchedule"  element={<AddNewSchedule/>}/>
-//     <Route exact path="/doctorProfile"  element={<DoctorProfile/>}/>
-//     <Route exact path="/checkAppoinment"  element={<CheckAppointment/>}/>
-//     <Route exact path="/updateAppointment"  element={<UpdateAppointment/>}/>
-//     <Route exact path="/emailSend"  element={<ContactUs/>}/>
-//     <Route exact path="/chart"  element={<Dashboard/>}/>
-//     <Route exact path="/dashboard/appointmenthistory"  element={<AppointmentHistory/>}/>
-//     <Route exact path="/upcomingEvents"  element={<UpcomingEvents/>}/>
-//     <Route exact path="/confirmNewSchedule"  element={<ConfirmNewSchedule/>}/>
-//     <Route exact path="/markDoctorAttendance"  element={<MarkDoctorAttendance/>}/>
-//
-//     <Route exact path="/forgot-password"  element={<ForgotPassword/>}/>
-//   </Routes>
-// </Router>

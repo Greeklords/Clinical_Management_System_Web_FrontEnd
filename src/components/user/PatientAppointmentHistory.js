@@ -12,11 +12,13 @@ import Box from '@mui/material/Box';
 export default function PatientAppointmentHistory(){    
 
   const [appointment, setAppointment] = useState({})
-  const { id } = useParams() 
+  const params = useParams();
+  const userId = params.userId;
+  // const { id } = useParams() 
 
     useEffect(() => {
-        if ( id ) {
-            axios.get(`http://localhost:4000/onlinePatient/onlineprofile/${id}`)
+        if ( userId ) {
+            axios.get(`http://localhost:4000/onlinePatient/onlineprofile/${userId}`)
                 .then(res => {
                     console.log(res)
                     setAppointment(res.data)
@@ -25,19 +27,20 @@ export default function PatientAppointmentHistory(){
                     console.log(err)
                 })
         }
-    }, [ id ]);   
+    }, [ userId ]);    
     
-    
-    function sendSMS(e){
-      e.preventDefault();    
+    //localhost:4000/onlinePatient/onlineprofile/:id
+
+    function cancelAppointment(e){
+      e.preventDefault();          
       
-        axios.post("http://localhost:4000/sendSMS").then((res)=>{       
-          console.log(res.data) 
-          alert("Message send successfully.");
+        axios.delete(`http://localhost:4000/onlinePatient/onlineprofile/${userId}`).then(()=>{        
+          window.location.reload(false);
         }).catch((err)=>{
           alert(err)
-        })
+        })      
     }
+    
 
     return(
         <Grid container component="main" sx={{ height: '100vh'}}>
@@ -51,7 +54,7 @@ export default function PatientAppointmentHistory(){
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 
           <Grid item xs={6}> 
-          <Typography sx ={{fontSize: 30, textAlign:'right'}}>My Appointments</Typography>  
+          <Typography sx ={{fontSize: 30, textAlign:'right'}}> My Appointment History</Typography>  
           </Grid>
 
           <Grid container rowSpacing={1}/>
@@ -62,7 +65,7 @@ export default function PatientAppointmentHistory(){
               <Grid container alignItems="center">
                 <Grid item xs>
                   <Typography gutterBottom variant="h5" component="div">
-                    Patient's name : {appointment.doctorname}
+                    Doctor name : {appointment.doctorname}
                   </Typography>
                 </Grid>          
               </Grid>
@@ -80,15 +83,15 @@ export default function PatientAppointmentHistory(){
               <Button
                 type="submit"          
                 variant="contained"
-                sx={{ mt: 3, mb: 2, marginLeft:2}}                               
+                sx={{ mt: 3, mb: 2, marginLeft:2}}                                  
               >
-                Confirm
+                Reschedule
               </Button>  
               <Button          
                 type="submit"          
                 variant="contained"
                 sx={{ mt: 3, mb: 2, marginLeft:3 }} 
-                onClick={sendSMS}                     
+                onClick={cancelAppointment}                    
               >
                 Cancel
               </Button>      
@@ -101,65 +104,3 @@ export default function PatientAppointmentHistory(){
     </Grid>        
     );
 }
-
-
-
-// import React from "react";
-// import SidebarHeader from "../sidebar/SidebarHeader";
-// import Sidebar from "../sidebar/User.sidebar";
-//import '../../Styles/userdashboard.css';
-
-// export default function DoctorDashboard() {
-//   const styles = {
-//     contentDiv: {
-//       display: "flex",            
-//     },
-//     contentMargin: {
-//       marginLeft: "1rem",
-//       width: "100%",
-//     },    
-//   };
-//   return (
-//     <div>    
-//       <SidebarHeader/>
-            
-//       <div style={styles.contentDiv}>
-//         <Sidebar/>
-//         <div style={styles.contentMargin}>
-
-//         <nav class="navbar navbar-light bg-light">
-//         <a class="navbar-brand" href="#">          
-//         </a>
-//         </nav>        
-
-//         <h4 className="appointmenttitle">CHECK DAILY APPOINTMENTS</h4>                 
-          
-//           <div class="cardAppoinment card">
-//               <div class="card-body">
-//                 <h4 class="card-title">20</h4>        
-
-//                 <div class="row">
-//                 <div class="col-md-4 form-group text-center">
-//                     <a href="#" class="btn btn-primary">Confirm Appointment</a>
-//                 </div>                
-//                 <div class="col-md-4 form-group text-center">
-//                 <a href="#" class="cancel btn btn-primary">Cancel Appointment</a>
-//                 </div>
-//                 </div>
-                
-//               </div>
-//           </div>
-
-//         </div>
-//       </div>
-
-//       <div class="footer-c py-2">
-//             <div class="container text-center">
-//                 <p class="text-light mb-0 py-2">© 2022 Chamal MedicarePLC. All risghts reserved.</p>
-//                 <h6 class="text-light mb-0 py-2">Solution by Greeklords</h6>
-//             </div>
-//         </div>
-        
-//     </div>
-//   );
-// }

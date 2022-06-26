@@ -3,12 +3,14 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 ChartJS.register(...registerables);
 
+const income = [5000, 8000, 7000, 6000, 9000, 10000,5000, 8000, 7000, 6000, 9000, 10000]
+
 const data = {
   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
   datasets: [
     {
       labels: "income",
-      data: [5000, 8000, 7000, 6000, 9000, 10000,5000, 8000, 7000, 6000, 9000, 10000],
+      data: income,
       fill: true,
       backgroundColor: "#2e4355",
       pointBorderColor: "#8884d8",

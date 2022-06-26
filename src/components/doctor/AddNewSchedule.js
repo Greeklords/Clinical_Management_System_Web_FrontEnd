@@ -11,39 +11,56 @@ import { useNavigate } from "react-router-dom";
 import {useEffect, useState} from "react";
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../auth/redux/authActions';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { requestNewSchedule } from '../auth/redux/authActions';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Stack from '@mui/material/Stack';
-import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 export default function AddNewSchedule() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();  
-    const [doctorID,setDoctorID] = useState("");      
-    const [newSchedule,setNewSchedule] = React.useState(new Date('2014-08-18'));    
+  const [description,setDescription] = useState("");      
+  const [newSchedule,setNewSchedule] = React.useState(new Date('2014-08-18T21:11:54')); 
+      
+    function handleRequest(e){
+      e.preventDefault();
+  
+      const newRequestSchedule = { 
+        description,              
+        newSchedule,             
+      }
+      
+      axios.post("http://localhost:4000/schedule/request",newRequestSchedule).then(()=>{
+        alert("Request sent successfully")      
+      }).catch((err)=>{
+        alert(err)
+      })      
+    }  
 
-    const registerThisUser = () => {
-        dispatch(registerUser({ 
-            doctorID,
-            newSchedule,            
-            navigate }));
-    };
-    const error = useSelector((state) => state.authReducer.error);
-    const errorMessage = useSelector((state) => state.authReducer.errorMessage);
-    const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();  
+    
+    
+    // const requestThisSchedule = () => {
+    //     dispatch(requestNewSchedule({ 
+    //         description,
+    //         newSchedule,            
+    //         navigate }));
+    // };
+    // const error = useSelector((state) => state.authReducer.error);
+    // const errorMessage = useSelector((state) => state.authReducer.errorMessage);
+    // const isAuthenticated = useSelector((state) => state.authReducer.isAuthenticated);
 
-    const handleRegister = (event) => {
-        event.preventDefault();
-        registerThisUser();          
-    };
+    // const handleSchedule = (event) => {
+    //     event.preventDefault();
+    //     requestThisSchedule();          
+    // };
 
-    useEffect(
-        ()=>{
-            if(isAuthenticated){
-                navigate('/addNewSchedule')
-            }
-        }
-    )
+    // useEffect(
+    //     ()=>{
+    //         if(isAuthenticated){
+    //             navigate('/addNewSchedule')
+    //         }
+    //     }
+    // )
   return (
     <Grid container component="main" sx={{ height: '100vh' }}>
     <CssBaseline />  
@@ -66,32 +83,31 @@ export default function AddNewSchedule() {
         <Box
           component="form"
           noValidate
-          onSubmit={handleRegister}
+          onSubmit={handleRequest}
           sx={{ mt: 1 }}
         >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12}>
           <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="doctorID"
-                label="Doctor ID"
-                name="doctorID"
-                autoComplete="doctorID"
-                autoFocus
-                onChange={(e) => setDoctorID(e.target.value)}
-          />
+              margin="normal"
+              required
+              fullWidth
+              id="description"
+              label="Description"
+              name="description"
+              autoComplete="description"
+              autoFocus
+              onChange={(e) => setDescription(e.target.value)}
+          />          
         </Grid>
         <Grid item xs={12} sm={12}>
-          <Stack spacing={3}>
-          <DesktopDatePicker
-            label="New Schedule"
-            inputFormat="MM/dd/yyyy"
-            value={newSchedule}
-            onChange={(newSchedule) => setNewSchedule(newSchedule)}
-            renderInput={(params) => <TextField {...params} />}
-          />
+          <Stack spacing={3}>          
+          <DateTimePicker
+          label="New Schedule"
+          value={newSchedule}
+          onChange={(newValue) => setNewSchedule(newValue)}
+          renderInput={(params) => <TextField {...params} />}
+        />
           </Stack>
         </Grid>            
         </Grid>          
@@ -102,8 +118,7 @@ export default function AddNewSchedule() {
             sx={{ mt: 3, mb: 2 }}
           >
             Add New Schedule
-          </Button>
-            { error &&  <Alert severity="error">{errorMessage}</Alert>}   
+          </Button>              
         </Box>
       </Box>
       </Grid> 

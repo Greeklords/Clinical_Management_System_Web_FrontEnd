@@ -87,17 +87,38 @@ export function* resetPassword(action) {
 export function* addDoctorProfile(action) {
   const Axios = yield createRequest();
   try {
-    const { data } = yield Axios.post('user/addProfile', action.data);
+    const { data } = yield Axios.post('doctor/addProfile', action.data);
     toast.success('Profile created successfully');
     yield put({
       type: actionTypes.DOCTOR_PROFILE_SUCCESS,
       data,
     });
-    action.data.navigate("/doctorProfile");
+    action.data.navigate("/addProfile");
 
   } catch (error) {
     yield put({
       type: actionTypes.DOCTOR_PROFILE_ERROR,
+      data: error.response.data
+    });
+    toast.error(error.response ? error.response.data.message : 'Unknown Error');
+  }
+}
+
+
+export function* requestNewSchedule(action) {
+  const Axios = yield createRequest();
+  try {
+    const { data } = yield Axios.post('schedule/request', action.data);
+    toast.success('Request sent successfully');
+    yield put({
+      type: actionTypes.NEW_SCHEDULE_SUCCESS,
+      data,
+    });
+    action.data.navigate("/addNewSchedule");
+
+  } catch (error) {
+    yield put({
+      type: actionTypes.NEW_SCHEDULE_ERROR,
       data: error.response.data
     });
     toast.error(error.response ? error.response.data.message : 'Unknown Error');
