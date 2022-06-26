@@ -6,7 +6,7 @@ import config from './config.json';
 export default function createRequest(upload) {
   const idToken = localStorage.getItem('idToken');
   return axios.create({
-    baseURL: 'http://localhost:4000/',
+    baseURL: 'https://clinical-management-system.herokuapp.com/',
     headers: {
       'Content-type': !upload ? 'application/json' : 'multipart/form-data',
       Authorization: `Bearer ${idToken}`,
