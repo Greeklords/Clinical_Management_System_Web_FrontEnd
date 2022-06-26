@@ -23,7 +23,7 @@ export default function DoctorProfile() {
   //var response=await axios.get(`http://localhost:8080/user/get/all?branch_id=${localStorage.getItem("branch_id")}`);
     useEffect(() => {
         if ( id ) {
-            axios.get(`http://localhost:4000/user/getUser/62b486add198e07703043587`)
+            axios.get(`http://localhost:4000/localhost:4000/user/getUser?id=${id}`)
                 .then(res => {
                     console.log(res)
                     setUserId(res.data)
