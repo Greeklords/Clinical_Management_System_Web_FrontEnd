@@ -73,9 +73,8 @@ const getAllUser =() => {
          setFilterData(filteredData)
         }
     
-         return (
-        <>
-        <HeaderDoctorProfile/>
+         return (        <>
+        
             <div className="para-body" >
             <div className="container" >
                 <h1>{params.id}</h1>

@@ -62,7 +62,7 @@ function Imguplad() {
                         reciptNumber,
                         ImgURL
                     }
-                    axios.post("http://localhost:4004/image/add", saveimage).then(() => {
+                    axios.post("http://localhost:4000/image/add", saveimage).then(() => {
                         alert("Image uploaded")
                     }).catch((err) => {
                         alert(err)

@@ -7,9 +7,8 @@ import AfterloginFutter from "./AfterloginFutter";
 function Lab(){
 
     return(
-      <>
+      <>      
       
-      <NavBar/>
       
       <div>
        <h1>Lab Assistant</h1> 

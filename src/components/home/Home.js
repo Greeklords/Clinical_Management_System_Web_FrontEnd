@@ -133,7 +133,10 @@ export default function Home() {
               >              
                 Make an appointment                
               </Button>
-              <Button variant="outlined">
+              <Button
+               variant="outlined"
+               href="/medicalServices"  
+              >
                 Medical Services
               </Button>
             </Stack>
@@ -142,7 +145,7 @@ export default function Home() {
 
         <Box sx={{ bgcolor: 'background.paper', p: 6, mt:0 }}>
             <Typography variant="h6" align="center" gutterBottom>
-                Chaml Medicare
+                Chamal Medicare
             </Typography>
             <Typography
                 variant="subtitle1"

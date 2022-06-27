@@ -7,9 +7,7 @@ import AfterloginFutter from "./AfterloginFutter";
 function Reci(){
 
     return(
-      <>
-      
-      <ReciNavBar/>
+      <>     
       
       <div>
        <h1>Receptioist</h1> 

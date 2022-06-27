@@ -10,6 +10,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import HistoryIcon from '@mui/icons-material/History';
 import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 export const menu_config = [
     { name: 'Home', to: '/', icon: <HomeIcon /> },    
@@ -26,7 +27,8 @@ export const menu_config = [
 ];
 
 export const patient_menu_config = [
-    { name: 'Home', to: '/', icon: <HomeIcon /> },    
+    { name: 'Home', to: '/', icon: <HomeIcon /> },
+    { name: 'Find a doctor', to: '/viewDoctorCard', icon: <PersonSearchIcon /> },    
     {
         name: 'Reports',
         icon: <FolderSharedIcon />,

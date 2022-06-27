@@ -31,8 +31,7 @@ const handleToken=(token,addresses)=>{
   console.log({token,addresses}); 
 } */
   return (
-    <>
-    <HeaderDoctorProfile/>
+    <>    
 
     <div className='payment_gate'>
     <div className="App">

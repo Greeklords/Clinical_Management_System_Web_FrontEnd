@@ -9,7 +9,7 @@ function LabReport(){
 
         <>
       <div className="form-body-up">
-      <NavBar/>
+      
      {/* <SearchBar/>*/}
       
     

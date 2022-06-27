@@ -11,7 +11,7 @@ function LabReportIssue() {
     var rep_no="62a8875919e861bc9cd29918";
     const [users, setUsers] = useState([]);
     const getAllUser = async () => {
-        const response = await fetch("http://localhost:4004/MedicalReports/?id="+rep_no);
+        const response = await fetch("http://localhost:4000/MedicalReports/?id="+rep_no);
         setUsers(await response.json());
         console.log(users);
     };

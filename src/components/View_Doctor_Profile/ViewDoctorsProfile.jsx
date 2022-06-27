@@ -11,7 +11,6 @@ function ViewDoctorsProfile(){
         
             <div>
 
-            <HeaderDoctorProfile/>
             <div className="container">
             <div className="header">
             <h1>Specialist Consultations</h1><br/>

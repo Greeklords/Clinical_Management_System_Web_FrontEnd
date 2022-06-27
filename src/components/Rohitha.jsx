@@ -7,7 +7,7 @@ const Rohitha = () => {
   return (
     <div>
          
-    <NavBar/>
+    
     
 
     <div class="split left">

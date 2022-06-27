@@ -152,7 +152,7 @@ export default function DoctorProfile() {
         >
         <Grid container spacing={2}/>         
         
-        <Typography>User id: {userId.firstName}</Typography>
+        
               <TextField
                 margin="normal"
                 required
@@ -274,3 +274,5 @@ export default function DoctorProfile() {
   );
 }
 
+
+// <Typography>User id: {userId.firstName}</Typography>

@@ -26,7 +26,7 @@ function ReqMedicalReportList() {
     const [Certificate, setCertificate] = useState([]);
     const [users, setUsers] = useState([]);
     const getAllUser = async () => {
-        const response = await fetch("http://localhost:4004/MedicalRequests/");
+        const response = await fetch("http://localhost:4000/MedicalRequests/");
         setUsers(await response.json());
         console.log(users);
     };
@@ -98,8 +98,7 @@ function ReqMedicalReportList() {
     }
 
     return (
-        <div className="Doctor_reg_view_1">
-            <HeaderDoctorProfile />
+        <div className="Doctor_reg_view_1">            
 
             <div style={styles.contentDiv}>
 
@@ -248,12 +247,7 @@ function ReqMedicalReportList() {
             </div >
             <br></br>
 
-            <div class="footer-c py-2">
-                <div class="container text-center">
-                    <p class="text-light mb-0 py-2">© 2022 Chamal MedicarePLC. All risghts reserved.</p>
-                    <h6 class="text-light mb-0 py-2">Solution by Greeklords</h6>
-                </div>
-            </div>
+            
 
 
         </div >

@@ -102,9 +102,7 @@ const doctorFilterData=(e)=>{
     return(
       
       <>
-      <div className="New-patient-add" >
-
-      <HeaderDoctorProfile/>
+      <div className="New-patient-add" >      
       
       <div className="form">
       <div className="container">

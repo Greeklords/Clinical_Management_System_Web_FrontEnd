@@ -7,7 +7,7 @@ const Dog = () => {
   return (
     <div>
          
-    <NavBar/>
+    
     
 
     <div class="split left">

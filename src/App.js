@@ -57,6 +57,8 @@ import RecepView from './components/medical_certificate/RecepView';
 import AppointmentHistory from "./components/AppointmentHistory";
 import PatientAppointmentHistory from "./components/user/PatientAppointmentHistory";
 import Income from "./components/charts/Income";
+import MedicalServices from "./components/home/MedicalServices";
+import UpcomingEvents from "./components/receptionist/UpcomingEvents";
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -136,8 +138,7 @@ const App=()=> {
                                     <Route exact path="/UserresView"  element={<UserresView/>}/>
                                     <Route exact path="/Img_uplad"  element={<Imguplad/>}/>
                                     <Route exact path="/ImageView"  element={<ImageView/>}/>
-                                    <Route exact path="/RecepView"  element={<RecepView/>}/>                                                                 
-                                    <Route path="/displaydata"  element={<DisplayData/>}/>                              
+                                    <Route exact path="/RecepView"  element={<RecepView/>}/>                                                         
                                     
                                     <Route path="/signupRoles"  element={<SignupRoles/>}/>
                                     <Route path="/checkAppoinment"  element={<CheckAppointment/>}/>
@@ -149,7 +150,8 @@ const App=()=> {
                                     <Route path="/onlineprofile/:id"  element={<PatientAppointmentHistory/>}/>
                                     <Route path="/getUser/:id"  element={<DoctorProfile/>}/>
                                     <Route path="/dashboard"  element={<Dashboard/>}/>  
-                                    <Route path="/markDoctorAttendance"  element={<Attendance/>}/>                           
+                                    <Route path="/markDoctorAttendance"  element={<Attendance/>}/>     
+                                    <Route path="/displaydata"  element={<DisplayData/>}/>                       
                                 </Route>
                             </React.Fragment>
                         </Routes>
@@ -161,6 +163,10 @@ const App=()=> {
                         <Route path="/reset-password/:userId/:token"  element={<ResetPassword/>}/>
 
                         <Route path="/income"  element={<Income/>}/>
+
+                        <Route path="/medicalServices"  element={<MedicalServices/>}/>
+
+                        <Route path="/events"  element={<UpcomingEvents/>}/>
                         
                         
                     </Routes>

@@ -99,8 +99,7 @@ const doctorFilterData=(e)=>{
 }
 
 return(
-      <>
-      <HeaderDoctorProfile/>
+      <>      
       <meta charSet="utf-8"/>
       <div className="form-body">
       <meta name="viewpoint" content="width=device-width, initial-scale=1.0"/>

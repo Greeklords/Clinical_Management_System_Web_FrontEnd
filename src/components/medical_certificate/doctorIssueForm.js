@@ -34,12 +34,12 @@ function MedicalIssueForm() {
     const [patients, setpatients] = useState([]);
     const [patientsFilter, setpatientsFilter] = useState([]);
     const getAllUser = async () => {
-        const response = await fetch("http://localhost:4004/doctors/");
+        const response = await fetch("http://localhost:4000/doctors/");
         setUsers(await response.json());
         console.log(users);
     };
     const getAllpatients = async () => {
-        const response = await fetch("http://localhost:4004/doctors/");
+        const response = await fetch("http://localhost:4000/doctors/");
         setpatients(await response.json());
         console.log(users);
     };
@@ -130,7 +130,7 @@ function MedicalIssueForm() {
             isseedDate,
         }
         var medical_status = "finished";
-        axios.post("http://localhost:4004/MedicalReports/add", updateMedical).then(() => {
+        axios.post("http://localhost:4000/MedicalReports/add", updateMedical).then(() => {
             alert("Medical report issued")
         }).catch((err) => {
             alert(err)
@@ -138,7 +138,7 @@ function MedicalIssueForm() {
         const updatedMedical = {
             medical_status
         }
-        axios.put(`http://localhost:4004/MedicalRequests/update/${uniqid}`, updatedMedical).then(() => {
+        axios.put(`http://localhost:4000/MedicalRequests/update/${uniqid}`, updatedMedical).then(() => {
             alert("Medical staus updated")
         }).catch((err) => {
             alert(err)
@@ -157,7 +157,7 @@ function MedicalIssueForm() {
     return (
         <>
             <div className="Doctor_reg_view">
-                <HeaderDoctorProfile />
+               
                 <div className="form" onSubmit={sendData} onClick={doctorFilterData}>
 
                     <form className="formDoc was-validated" name="medical_form">

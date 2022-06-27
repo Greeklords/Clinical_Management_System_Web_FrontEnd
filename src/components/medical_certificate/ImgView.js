@@ -23,7 +23,7 @@ function ImageView() {
     const [filterData, setFilterData] = useState([]);
     const [users, setUsers] = useState([]);
     const getAllUser = async () => {
-        const response = await fetch("http://localhost:4004/image/");
+        const response = await fetch("http://localhost:4000/image/");
         setUsers(await response.json());
         console.log(users);
         //FilterData();

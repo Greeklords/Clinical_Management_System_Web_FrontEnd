@@ -27,12 +27,12 @@ function ReqestForm() {
     const [patients, setpatients] = useState([]);
     const [patientsFilter, setpatientsFilter] = useState([]);
     const getAllUser = async () => {
-        const response = await fetch("http://localhost:4004/patients/");
+        const response = await fetch("http://localhost:4000/patients/");
         setUsers(await response.json());
         console.log(users);
     };
     const getAllpatients = async () => {
-        const response = await fetch("http://localhost:4004/doctors/");
+        const response = await fetch("http://localhost:4000/doctors/");
         setpatients(await response.json());
         console.log(users);
     };
@@ -94,7 +94,7 @@ function ReqestForm() {
             Imageurl
         }
         var markstatus1 = "disable";
-        axios.post("http://localhost:4004/MedicalRequests/add", updateMedical).then(() => {
+        axios.post("http://localhost:4000/MedicalRequests/add", updateMedical).then(() => {
             alert("Medical report issued")
         }).catch((err) => {
             alert(err)
@@ -102,7 +102,7 @@ function ReqestForm() {
         const updatedMedical = {
             markstatus1
         }
-        axios.put(`http://localhost:4004/patients/update/${u_id}`, updatedMedical).then(() => {
+        axios.put(`http://localhost:4000/patients/update/${u_id}`, updatedMedical).then(() => {
             alert("Medical staus updated")
         }).catch((err) => {
             alert(err)
@@ -118,7 +118,7 @@ function ReqestForm() {
         <>
             <div className="Doctor_reg_view">
 
-                <HeaderDoctorProfile />
+                
 
                 <div className="form" onSubmit={sendData} onClick={doctorFilterData}>
 

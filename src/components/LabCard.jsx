@@ -7,8 +7,7 @@ import AfterloginFutter from "./AfterloginFutter";
 function LabCard() {
   return (
 
-    <>
-     <HeaderDoctorProfile/>
+    <>    
     <div className='cards'>
       
       <div className='cards__container'>

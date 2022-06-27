@@ -9,8 +9,7 @@ function ViewDoctorCard(){
 
     return (
 
-      <>
-      <HeaderDoctorProfile/>
+      <>      
      <div className='cards'>
       
       <div className='cards__container'>

@@ -43,8 +43,6 @@ function CheckUpDetails(){
     return(
       <>
       <div className="ckeck-up-form" >
-
-      <HeaderDoctorProfile/>
       
       <div className="form">
       <div className="container">
