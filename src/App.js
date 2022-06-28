@@ -60,7 +60,7 @@ import Income from "./components/charts/Income";
 import DoctorManagement from "./components/admin/DoctorManagement";
 import ReceptionistManagement from "./components/admin/ReceptionistManagement";
 import LabAssistantManagement from "./components/admin/LabAssistantManagement";
-
+import OfferForm from "./components/offers/offerform";
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
     flexGrow: 1,
@@ -167,6 +167,7 @@ const App=()=> {
                         <Route path="/forgot-password"  element={<ForgotPassword/>}/>
                         <Route path="/reset-password/:userId/:token"  element={<ResetPassword/>}/>
                         <Route path="/income"  element={<Income/>}/>
+                        <Route path="/issueOffers" element={<OfferForm/>}/>
                     </Routes>
                 </Box>
             </BrowserRouter>
